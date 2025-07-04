@@ -38,11 +38,13 @@ Each insight below is written using SQL Common Table Expressions (CTEs) to simul
 
 |Platform  |Global Sales (in millions)     |
 |----------|-------------------------------|
-|X360      | 10,885.41                     |
+|Xbox360   | 10,885.41                     |
 |PS3       | 10,197.72                     |
 |PS2       | 7,325.55                      |
 |Wii       | 6,198.93                      |
 |DS        | 4,263.75                      |
+
+Takeaway: Xbox 360 dominated with over 10.8K in sales, strong NA & EU appeal helped it edge out competitors.
 
 ### Top 5 Publishers
 
@@ -54,10 +56,15 @@ Each insight below is written using SQL Common Table Expressions (CTEs) to simul
 |Take-Two Interactive        | 4,204.98                  |
 |Sony Computer Entertainment | 3,642.57                  |
 
+Takeaway: Nintendo's iconic IPs gave it a huge edge, the only publisher to cross 14K in global sales.
+
 ### Genre Sales Performance
 
  - Highest-Selling Genre : **Action** - 13,102.11M
+   *Fast-paced gameplay and broad appeal made Action the top performer.*
+   
  - Lowest-Selling Genre: **Strategy** - 498.96M
+   *Despite depth, the genre struggled to attract mainstream success.*
 
 ### Global Sales Trend by Year
 This simulated line chart shows how game sales evolved, peaking around 2008-2010 before a sharp decline by 2016.
@@ -110,6 +117,8 @@ This simulated line chart shows how game sales evolved, peaking around 2008-2010
 | Moderate Hit (5M–9.9M)      | 1,899      |
 | Hit (10M–19.9M)             | 603        |
 | Blockbuster (20M+)          | 189        |
+
+Takeaway: Blockbuster titles are *rare*, only 189 games crossed 20M+ sales. Most games stay in the niche/moderate zone.
 
 ## Tools Used 
 

@@ -9,7 +9,7 @@ Using raw game sales data, this project transforms a flat file into a relational
 ## Entity Relationship Diagram (ERD)
 
 ![ERD](./ERD.png)
-> Designed using [dbdiagram.io]
+> Designed using dbdiagram.io
 
 ## Database Structure
 
@@ -26,9 +26,9 @@ All tables are linked using foreign keys, and the schema was manually designed f
 
  - Which platforms generate the highest global sales?
  - Which publishers dominate the market?
- - What are the highest and lowest performing game genres?
+ - What are the highest and lowest-performing game genres?
  - How have global sales trended over the years?
- - What type of games fall into Blockbuster vs Niche sales bucket?
+ - What type of games fall into the Blockbuster vs Niche sales bucket?
 
 ## KPIs & Insights
 
@@ -60,7 +60,7 @@ Each insight below is written using SQL Common Table Expressions (CTEs) to simul
  - Lowest-Selling Genre: **Strategy** - 498.96M
 
 ### Global Sales Trend by Year
-This simulated line chart shows how game sales evolved over time, peaking around 2008-2010 before a sharp decline by 2016.
+This simulated line chart shows how game sales evolved, peaking around 2008-2010 before a sharp decline by 2016.
 
 | Year | Global Sales |
 |------|--------------|
@@ -125,6 +125,10 @@ This simulated line chart shows how game sales evolved over time, peaking around
 | `/images/`               | ERD diagram and screenshots           |
 | `/data/`                 | Cleaned CSV used for import           |
 | `video_game_queries.sql` | SQL queries for all insights          |
+| `case study`             | Full case study                       |
+
+## Case Study: Behind the Queries
+[Read the full case study](https://docs.google.com/document/d/1S4yuYQY2KCqcYIfT1PEbgiOFtp6Q5HS4NJODZsVNyRU/edit?usp=sharing)
 
 ## Why This Project Matters
 
@@ -133,8 +137,8 @@ By replicating typical dashboard views through raw queries, it reflects a deep u
 
 ## What I'd Explore Next
 
-If this was a real business case: 
- * Add game ratings or user reviews to explore impact on sales
+If this were a real business case: 
+ * Add game ratings or user reviews to explore the impact on sales
  * Analyze sales by region + genre to see local market preferences
  * Add launch date data to study time-to-peak-sales trends
  * Use window functions (RANK, ROW_NUMBER) for leaderboard-style insights.
@@ -143,8 +147,9 @@ If this was a real business case:
 
 I'm actively building tools to uncover workplace insights through data. Feel free to reach out via:
 
- * GitHub (https://github.com/Shrey0561)
- * LinkedIn (https://www.linkedin.com/in/shreya-srinath-879a66205/)
+ * [GitHub](https://github.com/Shrey0561)
+ * [LinkedIn](https://www.linkedin.com/in/shreya-srinath-879a66205/)
+ * [Notion](https://www.notion.so/Data-Analyst-Portfolio-221ebe151fdd801e9445e32590b67758?source=copy_link)
 
 
 I'm always up for conversations or new opportunities!

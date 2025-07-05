@@ -54,11 +54,12 @@ LIMIT 5;
 ```
 |Platform  |Global Sales (in millions)     | Chart            |
 |----------|-------------------------------|------------------|
-| Xbox360	 |  10885.41	                    | ▓▓▓▓▓▓▓▓▓▓▓      |
-|	Ps3	     |  10197.72	                    | ▓▓▓▓▓▓▓▓▓▓       |
-| Ps2	     |  7325.55	                     | ▓▓▓▓▓▓▓          |
-| Wii	     |  6198.93	                     | ▓▓▓▓▓▓           |
-| Ds	      |  4263.75	                     | ▓▓▓▓             |
+| Xbox 360 | 10835.41                      | ▓▓▓▓▓▓▓▓▓▓▓      |
+| Ps3      | 10197.72                      | ▓▓▓▓▓▓▓▓▓▓       |
+| Ps2      | 7325.55                       | ▓▓▓▓▓▓▓          |
+| Wii      | 6198.93                       | ▓▓▓▓▓▓           |
+| Ds       | 4263.75                       | ▓▓▓▓             |
+
 ```
 Takeaway: Xbox 360 dominated with over 10.8K in sales, and strong NA & EU appeal helped it edge out competitors.
 

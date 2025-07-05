@@ -35,16 +35,32 @@ All tables are linked using foreign keys, and the schema was manually designed f
 Each insight below is written using SQL Common Table Expressions (CTEs) to simulate a dashboard tile.
 
 ### Top 5 Platforms by Global Sales
-
-|Platform  |Global Sales (in millions)     |
-|----------|-------------------------------|
-|Xbox360   | 10,885.41                     |
-|PS3       | 10,197.72                     |
-|PS2       | 7,325.55                      |
-|Wii       | 6,198.93                      |
-|DS        | 4,263.75                      |
-
-Takeaway: Xbox 360 dominated with over 10.8K in sales, strong NA & EU appeal helped it edge out competitors.
+```sql
+-- This is a SQL code block
+WITH platform_sales AS (
+ SELECT
+  p.platform_name, ROUND(SUM(s.global_sales), 2) AS Total_Sales
+  FROM sales s
+  JOIN games g ON s.game_id = g.game_id
+  JOIN platforms p ON g.platform_id = p.platform_id
+  GROUP BY p.platform_name
+)
+SELECT platform_name, Total_Sales,
+REPEAT ('▓', ROUND(total_sales / 1000)) AS Ascii_Chart
+FROM platform_sales
+ORDER BY Total_Sales DESC
+LIMIT 5;
+```
+```
+|Platform  |Global Sales (in millions)     | Chart         |
+|----------|-------------------------------|---------------|
+| Xbox360	 |  10885.41	                    | ▓▓▓▓▓▓▓▓▓▓▓   |
+|	Ps3	     |  10197.72	                    | ▓▓▓▓▓▓▓▓▓▓    |
+| Ps2	     |  7325.55	                     | ▓▓▓▓▓▓▓       |
+| Wii	     |  6198.93	                     | ▓▓▓▓▓▓        |
+| Ds	      |  4263.75	                     | ▓▓▓▓          |
+```
+Takeaway: Xbox 360 dominated with over 10.8K in sales, and strong NA & EU appeal helped it edge out competitors.
 
 ### Top 5 Publishers
 

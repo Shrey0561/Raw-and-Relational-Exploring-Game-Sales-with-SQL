@@ -88,7 +88,7 @@ LIMIT 5;
 ### Top 5 Publishers
 Nintendo's legacy IPs, family-friendly content, and tight hardware-software ecosystem allowed it to dominate, showing that owning the entire stack is still unbeatable.
 
-###ASCII Chart Legend
+### ASCII Chart Legend
 *Each “▓” = ~1,000 million units sold (scaled).*
 
 ```sql

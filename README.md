@@ -1,9 +1,10 @@
 # Press Play for Insights: SQL Dashboard on Video Games
 
-This project simulates an analytics dashboard using SQL. It focuses on global video game sales and uses structured querying and relational design to extract business-ready insights.
-
+```markdown
+A SQL-powered deep dive into video game sales that proves dashboards aren't always needed to deliver blockbuster insights. This project simulates an interactive analytics dashboard using SQL and ASCII visuals. By transforming raw data into insights using pure code, it demonstrates how storytelling and strategy can thrive without a single charting tool.
+```
 ## TL;DR
-Designed a SQL-powered mock dashboard to analyze global video game sales without Power BI or Tableau. This project involved data modeling, relational joins, ASCII-based charts, and CTE logic to uncover platform trends, genre performance, sales buckets, and publisher dominance. The goal? Prove that clean backend logic *is* storytelling.
+Designed a SQL-powered mock dashboard to analyze global video game sales without Power BI or Tableau. This project involved data modeling, relational joins, ASCII-based charts, and CTE logic to uncover platform trends, genre performance, sales buckets, and publisher dominance. The goal? to prove that clean backend logic *is* storytelling.
 
 ## Table of Contents
 * [Overview](#overview)
@@ -21,7 +22,7 @@ Designed a SQL-powered mock dashboard to analyze global video game sales without
 
 ## Overview 
 
-Using raw game sales data, this project transforms a flat file into a relational database and builds SQL-based *dashboard tiles* that mimic visual analytics, all without Power BI or Excel. It covers platform performance, genre patterns, publisher trends, and year-over-year global sales. 
+Using raw game sales data, this project transforms a flat file into a relational database. It builds SQL-based *dashboard tiles* that mimic visual analytics, all without Power BI or Excel. It covers platform performance, genre patterns, publisher trends, and year-over-year global sales. 
 
 ## Entity Relationship Diagram (ERD)
 Here's a clear visual map of how the core tables connect; it's the backbone of the database structure, showing relationships and keys that power all of the SQL magic behind the insights.
@@ -55,6 +56,9 @@ Each insight below is written using SQL Common Table Expressions (CTEs) to simul
 ### Top 5 Platforms by Global Sales
 Xbox 360 led the pack thanks to its deep market penetration in North America and Europe, a prime example of how regional dominance can outperform pure tech specs.
 
+### ASCII Chart Legend
+*Each “▓” = ~1,000 million units sold (scaled).*
+
 ```sql
 -- This is a SQL code block
 WITH platform_sales AS (
@@ -83,6 +87,9 @@ LIMIT 5;
 
 ### Top 5 Publishers
 Nintendo's legacy IPs, family-friendly content, and tight hardware-software ecosystem allowed it to dominate, showing that owning the entire stack is still unbeatable.
+
+###ASCII Chart Legend
+*Each “▓” = ~1,000 million units sold (scaled).*
 
 ```sql
 -- This is a SQL code block
@@ -117,6 +124,9 @@ LIMIT 5;
 - Highest-Selling Genre : **Action** - 13,102.11M
 Fast-paced and accessible. Action games dominate global sales, proving that adrenaline still sells better than complexity.
 
+### ASCII Chart Legend
+*Each “▓” = ~500 million units sold (scaled).*
+
 ```sql
 -- This is a SQL code block
 WITH genre_sales AS (
@@ -142,6 +152,9 @@ LIMIT 1;
 
 - Lowest-Selling Genre: **Strategy** - 498.96M
 Despite being beloved by a niche, strategy games struggle to scale, showing that depth doesn't always equal mass appeal.
+
+### ASCII Chart Legend
+*Each “░” = ~100 million units sold (scaled).*
 
 ```sql
 -- This is a SQL code block
@@ -169,6 +182,9 @@ LIMIT 1;
 ### Global Sales Trend by Year
 Video game sales peaked in the 2008-2010 era, a golden window driven by console maturity, cross-platform titles, and global reach. Post-2015, the decline signals a market shift toward digital platforms and mobile.
 (Simulated ASCII line chart previewed in full markdown)
+
+### ASCII Chart Legend
+*Each “█” = ~500 million units sold per year (scaled).*
 
 ```sql
 -- This is a SQL code block
@@ -229,6 +245,9 @@ ORDER BY year_of_release;
 ```
 ### Sales Bucket Heatmap
 Only a tiny fraction of games become true blockbusters; most titles hover in the "Niche Success" zone, highlighting the importance of diversified portfolios over chasing unicorns.
+
+### ASCII Chart Legend
+*Each “▒” = ~500 games counted (scaled).*
 
 ```sql
 -- This is a SQL code block

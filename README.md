@@ -1,36 +1,25 @@
-# Press Play for Insights: SQL Dashboard on Video Games
+# Press Play for Insights: Video Games Sales & Platform Trends Dashboard (SQL)
 
-```markdown
-A SQL-powered deep dive into video game sales that proves dashboards aren't always needed to deliver blockbuster insights. This project simulates an interactive analytics dashboard using SQL and ASCII visuals. By transforming raw data into insights using pure code, it demonstrates how storytelling and strategy can thrive without a single charting tool.
-```
+This SQL-only project simulates an interactive dashboard by using ASCII visuals and query outputs to analyze 16K+ video game sales. It uncovers business patterns in platforms, genres, regions, and publishers, proving that backend logic and storytelling can deliver powerful insights even without traditional BI tools.
+
 ## TL;DR
-Designed a SQL-powered mock dashboard to analyze global video game sales without Power BI or Tableau. This project involved data modeling, relational joins, ASCII-based charts, and CTE logic to uncover platform trends, genre performance, sales buckets, and publisher dominance. The goal? to prove that clean backend logic *is* storytelling.
+**Problem:** Gaming companies need to understand which platforms, genres, and publishers are driving global market share.
 
-## Table of Contents
-* [Overview](#overview)
-* [Entity Relationship Diagram](#entity-relationship-diagram)
-* [Database Structure](#database-structure)
-* [Key Questions Answered](#key-questions-answered)
-* [KPIs & Insights](#kpis--insights)
-* [Tools Used](#tools-used)
-* [Folder Structure](#folder-structure)
-* [Case Study: Behind the Queries](#case-study-behind-the-queries)
-* [Markdown](#markdown)
-* [Why This Project Matters](#why-this-project-matters)
-* [What I'd Explore Next](#what-id-explore-next)
-* [Let's Connect](#lets-connect)
+**Process:** Used SQL-only, including relational joins, CTEs, and ASCII visualizations to analyze **16K+ video game records**.
 
-## Overview 
+**Result:** 
+- Identified top-performing platforms (Xbox 360, PS3) and regional growth differences
+- Highlighted genre performance (Action vs Strategy) and publisher dominance
+- Pinpointed blockbuster vs niche sales buckets using logic-first segmenting
 
-Using raw game sales data, this project transforms a flat file into a relational database. It builds SQL-based *dashboard tiles* that mimic visual analytics, all without Power BI or Excel. It covers platform performance, genre patterns, publisher trends, and year-over-year global sales. 
+**Takeaway:** Backend SQL workflows can deliver powerful business insights, even before dashboards are introduced.
 
-## Entity Relationship Diagram (ERD)
-Here's a clear visual map of how the core tables connect; it's the backbone of the database structure, showing relationships and keys that power all of the SQL magic behind the insights.
+## SQL Logic Preview
+This project replaces a traditional dashboard with backend SQL logic and ASCII-style visualizations. Below is the Entity Relationship Diagram (ERD) used to model the relational database behind the analysis.
 
 ![ERD](./ERD.png)
-> Designed using dbdiagram.io
 
-## Database Structure
+## Database Tables (Schema Reference)
 
 Data was modeled into 5 main tables: 
 - `games` - game details (name, platform, genre, etc.)
@@ -41,20 +30,33 @@ Data was modeled into 5 main tables:
 
 All tables are linked using foreign keys, and the schema was manually designed for clarity and efficiency.
 
+
+## Table of Contents
+* [Overview](#overview)
+* [Key Questions Answered](#key-questions-answered)
+* [KPIs & Insights](#kpis--insights)
+* [Tools Used](#tools-used)
+* [Case Study - Full Walkthrough](#case-study-full-walkthrough)
+* [What I'd Explore Next](#what-id-explore-next)
+* [What This Project Demonstrates](#what-this-project-demonstrates)
+* [Let's Connect](#lets-connect)
+
+## Overview 
+
+Starting from raw video game sales data, this project models a relational SQL database and builds "logic-first" dashboard tiles using queries and ASCII visuals. It explores platform performance, genre trends, publisher dominance, and year-over-year global sales to surface market-driven business insights.
+
 ## Key Questions Answered
 
  - Which platforms generate the highest global sales?
  - Which publishers dominate the market?
  - What are the highest and lowest-performing game genres?
  - How have global sales trended over the years?
- - What type of games fall into the Blockbuster vs Niche sales bucket?
+ - What games fall into Blockbuster vs Niche sales buckets?
 
 ## KPIs & Insights
-
-Each insight below is written using SQL Common Table Expressions (CTEs) to simulate a dashboard tile.
-
-### Top 5 Platforms by Global Sales
-Xbox 360 led the pack thanks to its deep market penetration in North America and Europe, a prime example of how regional dominance can outperform pure tech specs.
+**🎮Top Platforms**
+- **Xbox 360** and **PS3** dominate global game sales (10.8B+ and 10.1B+ units)
+- Regional reach outweighed pure hardware specs in overall performance
 
 ### ASCII Chart Legend
 *Each “▓” = ~1,000 million units sold (scaled).*
@@ -85,250 +87,55 @@ LIMIT 5;
 | Ds       | 4,263.75                      | ▓▓▓▓             |
 ```
 
-### Top 5 Publishers
-Nintendo's legacy IPs, family-friendly content, and tight hardware-software ecosystem allowed it to dominate, showing that owning the entire stack is still unbeatable.
+**🏢 Top Publishers**
+* **Nintendo** leads global sales (14.46B), followed by Electronic Arts and Activision
+* Highlights the advantage of owning IP, hardware, and a family-friendly catalog
 
-### ASCII Chart Legend
-*Each “▓” = ~1,000 million units sold (scaled).*
+**🎭 Genre Performance**
+* **Action** games dominate (~13B)
+* **Strategy** games remain niche (<500M), despite loyal communities
 
-```sql
--- This is a SQL code block
-WITH publisher_sales AS (
- SELECT
- pub.publisher_name,
- ROUND(SUM(s.global_sales), 2) AS Total_Sales
- FROM sales s
- JOIN games g ON s.game_id = g.game_id
- JOIN publishers pub ON g.publisher_id = pub.publisher_id
- GROUP BY pub.publisher_name
-)
-SELECT publisher_name,
-  Total_Sales,
-  REPEAT('▓', ROUND(total_sales / 1000)) AS Ascii_Chart
-FROM publisher_sales
-ORDER BY total_sales DESC
-LIMIT 5;
-```
-```
-|Publisher                   |Global Sales (in millions) | Ascii_Chart     |
-|----------------------------|---------------------------|-----------------|
-|Nintendo                    | 14,462.46                 | ▓▓▓▓▓▓▓▓▓▓▓▓▓▓  |
-|Electronic Arts             | 11,098.62                 | ▓▓▓▓▓▓▓▓▓▓▓     |
-|Activision                  | 9,703.53                  | ▓▓▓▓▓▓▓▓▓▓      |
-|Take-Two Interactive        | 4,204.98                  | ▓▓▓▓            |
-|Sony Computer Entertainment | 3,642.57                  | ▓▓▓▓            |
-```
+**📈 Sales Trend Over Time**
+* Peak growth occurred during **2006-2010**, driven by console maturity and cross-platform hits
+* Post-2015 dip reflects rise of **mobile + digital distribution**
 
-### Genre Sales Performance
-
-- Highest-Selling Genre : **Action** - 13,102.11M
-Fast-paced and accessible. Action games dominate global sales, proving that adrenaline still sells better than complexity.
-
-### ASCII Chart Legend
-*Each “▓” = ~500 million units sold (scaled).*
-
-```sql
--- This is a SQL code block
-WITH genre_sales AS (
- SELECT 
- genr.genre_name, ROUND(SUM(s.global_sales), 2) AS Total_Sales
- FROM sales s
- JOIN games g ON s.game_id = g.game_id
- JOIN genres genr ON g.genre_id = genr.genre_id
- GROUP BY genr.genre_name
-)
-SELECT genre_name,
-  Total_Sales,
-  REPEAT('▓', ROUND(total_sales / 500)) AS Ascii_Chart
-FROM genre_sales
-ORDER BY total_sales DESC
-LIMIT 1;
-```
-```
-|Genre Name          | Total Sales      | Ascii_Chart                |
-|--------------------|------------------|----------------------------|
-| Action             | 13,102.11        | ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ |
-```
-
-- Lowest-Selling Genre: **Strategy** - 498.96M
-Despite being beloved by a niche, strategy games struggle to scale, showing that depth doesn't always equal mass appeal.
-
-### ASCII Chart Legend
-*Each “░” = ~100 million units sold (scaled).*
-
-```sql
--- This is a SQL code block
-WITH genre_sales AS (
- SELECT 
- genr.genre_name, ROUND(SUM(s.global_sales), 2) AS Total_Sales
- FROM sales s
- JOIN games g ON s.game_id = g.game_id
- JOIN genres genr ON g.genre_id = genr.genre_id
- GROUP BY genr.genre_name
-)
-SELECT genre_name,
-  Total_Sales,
-  REPEAT('░', ROUND(total_sales / 100)) AS Ascii_Chart
-FROM genre_sales
-ORDER BY total_sales ASC
-LIMIT 1;
-```
-```
-|Genre Name          | Total Sales      | Ascii_Chart  |
-|--------------------|------------------|--------------|
-|Strategy            | 498.96           | ░░░░░        |
-```
-
-### Global Sales Trend by Year
-Video game sales peaked in the 2008-2010 era, a golden window driven by console maturity, cross-platform titles, and global reach. Post-2015, the decline signals a market shift toward digital platforms and mobile.
-(Simulated ASCII line chart previewed in full markdown)
-
-### ASCII Chart Legend
-*Each “█” = ~500 million units sold per year (scaled).*
-
-```sql
--- This is a SQL code block
-WITH sales_trend AS (
- SELECT
- g.year_of_release, ROUND(SUM(s.global_sales), 2) AS Total_Global_Sales
- FROM sales s
- JOIN games g ON s.game_id = g.game_id
- GROUP BY g.year_of_release
- ORDER BY g.year_of_release
-)
-SELECT  year_of_release,
-  Total_Global_Sales,
-  REPEAT('█', ROUND(total_global_sales / 500)) AS Ascii_Chart
-FROM sales_trend
-ORDER BY year_of_release;
-```
-```
-| Year | Global Sales | Ascii_Chart    |
-|------|--------------|----------------|
-| 1980 | 63.63        |                |
-| 1981 | 151.83       |                |
-| 1982 | 99.36        |                |
-| 1983 | 68.58        |                |
-| 1984 | 404.91       | █              |
-| 1985 | 436.68       | █              |
-| 1986 | 251.19       | █              |
-| 1987 | 143.37       |                |
-| 1988 | 389.25       | █              |
-| 1989 | 605.16       | █              |
-| 1990 | 396.99       | █              |
-| 1991 | 173.25       |                |
-| 1992 | 591.39       | █              |
-| 1993 | 247.05       |                |
-| 1994 | 506.34       | █              |
-| 1995 | 359.73       | █              |
-| 1996 | 1,191.51     | ██             |
-| 1997 | 1,092.69     | ██             |
-| 1998 | 1,423.26     | ███            |
-| 1999 | 1,311.84     | ███            |
-| 2000 | 995.04       | ██             |
-| 2001 | 2,188.71     | ████           |
-| 2002 | 2,231.01     | ████           |
-| 2003 | 1,836.18     | ████           |
-| 2004 | 2,330.46     | █████          |
-| 2005 | 2,271.69     | █████          |
-| 2006 | 3,253.95     | ███████        |
-| 2007 | 4,718.16     | █████████      |
-| 2008 | 5,122.26     | ██████████     |
-| 2009 | 4,078.26     | ████████       |
-| 2010 | 4,778.28     | ██████████     |
-| 2011 | 4,569.30     | █████████      |
-| 2012 | 3,048.57     | ██████         |
-| 2013 | 4,844.16     | ██████████     |
-| 2014 | 4,679.82     | █████████      |
-| 2015 | 2,853.09     | ██████         |
-| 2016 | 328.05       | █              |
-```
-### Sales Bucket Heatmap
-Only a tiny fraction of games become true blockbusters; most titles hover in the "Niche Success" zone, highlighting the importance of diversified portfolios over chasing unicorns.
-
-### ASCII Chart Legend
-*Each “▒” = ~500 games counted (scaled).*
-
-```sql
--- This is a SQL code block
-WITH sales_buckets AS (
- SELECT g.game_name,
-  CASE
-   WHEN s.global_sales >= 20 THEN 'Blockbuster (20M+)'
-   WHEN s.global_sales >= 10 THEN 'Hit (10M - 19.9M)'
-   WHEN s.global_sales >= 5 THEN 'Moderate Hit (5M - 9.9M)'
-   WHEN s.global_sales >= 1 THEN 'Niche Success (1M - 4.9M)'
-   ELSE 'Low Impact (< 1M)'
-END AS sales_bucket
-FROM sales s
-JOIN games g ON s.game_id = g.game_id
-)
-SELECT sales_bucket, 
-  COUNT(*) AS game_count,
-  REPEAT('▒', ROUND(COUNT(*) / 500)) AS Ascii_Chart
-FROM sales_buckets
-GROUP BY sales_bucket
-ORDER BY game_count DESC;
-```
-```
-| Sales Bucket                | Game Count | Ascii_Chart                       |
-|-----------------------------|------------|-----------------------------------|
-| Niche Success (1M–4.9M)     | 16,425     | ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒ |
-| Moderate Hit (5M–9.9M)      | 1,899      | ▒▒▒▒                              |
-| Hit (10M–19.9M)             | 603        | ▒                                 |
-| Blockbuster (20M+)          | 189        |                                   |
-```
+**🔥 Blockbuster vs Niche** 
+* Only **189 games** achieved blockbuster status (20M+ units)
+* ~16K titles fall into "**niche success**" (1-4.9M), reinforcing long-tail dynamics
 
 ## Tools Used 
 
- * MySQL - data modeling and querying
- * Excel - data cleaning
- * dbdiagram.io - ERD design and schema visualization
+- **MySQL** - Data modeling and SQL querying
+- **Microsoft Excel** - Minor data cleaning before import
+- **dbdiagram.io** - ERD design and schema visualization
 
-## Folder Structure 
-
-| File/Folder              | Description                           |
-|--------------------------|---------------------------------------|
-| `README.md`              | This file                             |
-| `/images/`               | ERD diagram and screenshots           |
-| `/data/`                 | Cleaned CSV used for import           |
-| `video_game_queries.sql` | SQL queries for all insights          |
-| `case study`             | Full case study                       |
-
-## Case Study: Behind the Queries
-Want the full business breakdown, schema logic, and strategy behind each query?
+## Case Study - Full Walkthrough
+Explore the business context, SQL logic, and schema design driving each query:
 
 [View the full case study](https://docs.google.com/document/d/1S4yuYQY2KCqcYIfT1PEbgiOFtp6Q5HS4NJODZsVNyRU/edit?usp=sharing)
 
-```markdown
-### What This Project Demonstrates
- - Backend analytics using SQL only, no frontend tools
- - Data modeling with custom schema and foreign keys
- - Dashboard-style storytelling through CTEs and ASCII visuals
- - Strong understanding of genre/market performance metrics.
-```
-## Why This Project Matters
-
-This project highlights the ability to extract and communicate insights directly from structured data using only SQL. It demonstrated key data analytics skills, from database design to segmentation logic and business storytelling. 
-By replicating typical dashboard views through raw queries, it reflects a deep understanding of how metrics, patterns, and business questions connect. It's not about the tool, it's about the thinking behind the insight.
-
 ## What I'd Explore Next
+In a future version of this project, I would: 
+- Integrate gamer ratings or reviews to measure quality vs sales
+- Analyze region + genre interactions to capture local preferences
+- Add launch date data to study time-to-peak performance
+- Introduce window functions (e.g., RANK, ROW_NUMBER) for leaderboard-style insights
 
-If this were a real business case: 
- * Add game ratings or user reviews to explore the impact on sales
- * Analyze sales by region + genre to see local market preferences
- * Add launch date data to study time-to-peak-sales trends
- * Use window functions (RANK, ROW_NUMBER) for leaderboard-style insights.
-
+## What This Project Demonstrates
+ - Ability to perform backend analytics using SQL (without BI tools)
+ - Exposure to data modeling with custom schemas and foreign keys
+ - Practice turning SQL outputs into story-driven insights using CTEs and ASCII visuals
+ - Growing understanding of genre, platform, and market performance metrics
+  
 ## Let's Connect
 
-I'm actively building tools to uncover workplace insights through data. Feel free to reach out via:
+I'm building my career in data analytics and love exploring how market trends translate into business strategy. Feel free to reach out via:
 
  * [GitHub](https://github.com/Shrey0561)
  * [LinkedIn](https://www.linkedin.com/in/shreya-srinath-879a66205/)
  * [Notion](https://www.notion.so/Data-Analyst-Portfolio-221ebe151fdd801e9445e32590b67758?source=copy_link)
 
 
-I'm always up for conversations or new opportunities!
+I'm always open to conversations, mentorship, or entry-level opportunities.
 
 
